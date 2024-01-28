@@ -1,0 +1,44 @@
+<ion-header mode="ios">
+  <ion-toolbar >
+    <ion-title>Carrito </ion-title>
+    <ion-buttons  slot="start">
+      <ion-button (click)="cerrarModal()"
+        text="Volver"
+        color="primary"
+       >Volver
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col>COD</ion-col>
+      <ion-col>NAME</ion-col>
+      <ion-col>PRICE</ion-col>
+      <ion-col>AMOUNT</ion-col>
+      <ion-col>SUTOTAL</ion-col>
+      <ion-col>ACTION</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of listaItemsCarrito ; let i=index">
+      <ion-col>{{ item.producto_id}}</ion-col>
+      <ion-col>{{ item.descripcion}}</ion-col>
+      <ion-col>{{ item.precio}}</ion-col>
+      <ion-col>{{ item.cantidad}}</ion-col>
+      <ion-col>{{ item.cantidad! * item.precio! }}</ion-col>
+      <ion-button (click)="eliminarProductoCarrito(i)" expand="block" fill="clear" shape="round" color="danger">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col style="font-weight: 700;">Total</ion-col>
+      <ion-col style="font-weight: 700;">S/.{{total}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button (click)="VaciarCarrito()">Vaciar carrito</ion-button>
+  <ion-button (click)="GuardarCarrito()">Guardar carrito</ion-button>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header mode="ios">
+  <ion-toolbar >
+
+    <ion-buttons slot="end" >
+      <ion-button color="danger" (click)="cerrarModal()">
+      close
+      </ion-button>
+      </ion-buttons>
+
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ edit ? 'Editar ' : 'Agregar '}} Cliente</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="registrarForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input formControlName="nombres" [(ngModel)]="datos.nombres"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages.nombres">
+      <small class="error-message" *ngIf="registrarForm.get('nombres')?.hasError(validation.type) && (
+ registrarForm.get('nombres')?.dirty || registrarForm.get('nombres')?.touched)">
+        {{ validation.message }}</small>
+    </ng-container>
+    <ion-item>
+      <ion-label position="floating">Ruc</ion-label>
+      <ion-input formControlName="ruc_dni" [(ngModel)]="datos.ruc_dni"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages.ruc_dni">
+      <small class="error-message" *ngIf="registrarForm.get('ruc_dni')?.hasError(validation.type) && (
+ registrarForm.get('ruc_dni')?.dirty || registrarForm?.get('ruc_dni')?.touched)">
+        {{ validation?.message }}</small>
+    </ng-container>
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input formControlName="direccion" [(ngModel)]="datos.direccion"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages?.direccion">
+      <small class="error-message"
+        *ngIf="registrarForm?.get('direccion')?.hasError(validation.type) && (registrarForm?.get('direccion')?.dirty || registrarForm?.get('direccion')?.touched)">
+        {{ validation?.message }}</small>
+    </ng-container>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="datos.email" formControlName="email"></ion-input>
+    </ion-item>
+    <ng-container *ngFor="let validation of validation_messages?.email">
+      <small class="error-message"
+        *ngIf="registrarForm?.get('email')?.hasError(validation.type) && (registrarForm?.get('email')?.dirty || registrarForm?.get('email')?.touched)">
+        {{ validation?.message }}</small>
+    </ng-container>
+    <ion-button [disabled]="!registrarForm.valid" type="submit" expand="block" paddi ng color="primary"
+      class="ion-margin-top">{{ edit ? 'Actualizar ' : 'Guardar '}}</ion-button>
+  </form>
+
+</ion-content>

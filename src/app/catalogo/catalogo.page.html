@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>CATALOGO DE PRODUCTOS</ion-title>
+
+
+    <ion-button (click)="verCarrito()" slot="end"  fill="clear">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge>{{cantidadItemsCarrito}}</ion-badge>
+    </ion-button>
+
+  </ion-toolbar>
+
+
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <ion-list>
+      <ion-item-sliding *ngFor="let producto of productos">
+        <ion-item>
+          <ion-avatar >
+            <img src="{{ producto.foto }}" />
+          </ion-avatar>
+          <ion-label class="ion-margin">
+            <h3 class="title">{{ producto.descripcion }}</h3>
+            <p class="subtext"></p>
+          </ion-label>
+          {{producto.precio}}
+          <ion-button (click)="addCarrito(producto)" class="ion-margin"
+            >Añadir al carrito</ion-button
+          >
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>
